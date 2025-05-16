@@ -120,7 +120,7 @@ export default function EditPetScreen() {
                 onChangeText={txt => setPet(p => ({ ...p, type: txt }))}
             />
 
-            <Text style={textStyles}>Sex</Text>
+            <Text style={textStyles}>Gender (Click to Change)</Text>
             <SelectDropdown
                 data={sexSelect}
                 defaultValue={{ title: pet.sex }}
@@ -139,7 +139,18 @@ export default function EditPetScreen() {
                 }
             />
 
+            <Text style={textStyles}>Weight (kg)</Text>
+            <TextInput
+            style={inputStyles}
+            keyboardType="decimal-pad"
+            value={pet.weight.toString()}
+            onChangeText={txt => setPet(p => ({ ...p, weight: parseFloat(txt) || 0 }))}
+            />
+
             {/* … same inputs for type, breed, weight, conditions … */}
+            <View >
+                __________________________________________________________
+            </View>
 
             <Button title="Pick New Image" onPress={pickImage} />
             {pet.picture ? <Image source={{uri:pet.picture}}/> : null}
@@ -160,6 +171,6 @@ const styles = StyleSheet.create({
     },
     preview: { marginTop: 8, color: 'green' },
     submit: { marginTop: 24 },
-    dropdownItem: { padding: 8 },
+    dropdownItem: { padding: 8 ,margin:8},
     error: { color: 'red', textAlign: 'center', marginTop: 40 },
 });
